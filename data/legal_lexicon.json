@@ -1,0 +1,848 @@
+{
+  "metadata": {
+    "name": "LegalLens Legal Risk Lexicon",
+    "version": "2.0.0",
+    "description": "Self-developed lexicon for legal document risk assessment, aligned with CUAD (Contract Understanding Atticus Dataset) categories. Maps legal terms and phrases to CUAD risk categories for benchmarking.",
+    "cuad_alignment": "Categories match CUAD v1 labels for direct comparison of lexicon-based detection vs expert annotations.",
+    "categories": [
+      "non_compete",
+      "exclusivity",
+      "no_solicit_of_customers",
+      "no_solicit_of_employees",
+      "non_disparagement",
+      "termination_for_convenience",
+      "rofr_rofo_rofn",
+      "change_of_control",
+      "anti_assignment",
+      "revenue_profit_sharing",
+      "price_restrictions",
+      "minimum_commitment",
+      "volume_restriction",
+      "ip_ownership_assignment",
+      "joint_ip_ownership",
+      "license_grant",
+      "non_transferable_license",
+      "unlimited_license",
+      "irrevocable_perpetual_license",
+      "source_code_escrow",
+      "post_termination_services",
+      "audit_rights",
+      "uncapped_liability",
+      "cap_on_liability",
+      "liquidated_damages",
+      "warranty",
+      "insurance",
+      "covenant_not_to_sue",
+      "third_party_beneficiary",
+      "indemnification",
+      "confidentiality",
+      "governing_law",
+      "most_favored_nation"
+    ],
+    "risk_scale": "1-5 (1=informational, 2=low, 3=moderate, 4=high, 5=critical)"
+  },
+  "terms": [
+    {
+      "term": "non-compete",
+      "lemma": "non-compete",
+      "category": "non_compete",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 10"],
+      "description": "Restriction on competing with counterparty"
+    },
+    {
+      "term": "noncompete",
+      "lemma": "noncompete",
+      "category": "non_compete",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 10"],
+      "description": "Restriction on competing with counterparty (alternate spelling)"
+    },
+    {
+      "term": "covenant not to compete",
+      "lemma": "covenant not to compete",
+      "category": "non_compete",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 10"],
+      "description": "Formal non-compete agreement"
+    },
+    {
+      "term": "competitive activity",
+      "lemma": "competitive activity",
+      "category": "non_compete",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 10"],
+      "description": "Reference to restricted competitive activities"
+    },
+    {
+      "term": "exclusive",
+      "lemma": "exclusive",
+      "category": "exclusivity",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 11"],
+      "description": "Exclusive dealing commitment"
+    },
+    {
+      "term": "exclusivity",
+      "lemma": "exclusivity",
+      "category": "exclusivity",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 11"],
+      "description": "Exclusive dealing arrangement"
+    },
+    {
+      "term": "sole and exclusive",
+      "lemma": "sole and exclusive",
+      "category": "exclusivity",
+      "base_risk": 5,
+      "legal_refs": ["CUAD Category 11"],
+      "description": "Strong exclusivity clause"
+    },
+    {
+      "term": "exclusive supplier",
+      "lemma": "exclusive supplier",
+      "category": "exclusivity",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 11"],
+      "description": "Single-source supplier requirement"
+    },
+    {
+      "term": "non-solicitation",
+      "lemma": "non-solicitation",
+      "category": "no_solicit_of_customers",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 12"],
+      "description": "Restriction on soliciting customers"
+    },
+    {
+      "term": "solicit customers",
+      "lemma": "solicit customer",
+      "category": "no_solicit_of_customers",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 12"],
+      "description": "Customer solicitation restriction"
+    },
+    {
+      "term": "solicit employees",
+      "lemma": "solicit employee",
+      "category": "no_solicit_of_employees",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 14"],
+      "description": "Employee solicitation restriction"
+    },
+    {
+      "term": "hire employees",
+      "lemma": "hire employee",
+      "category": "no_solicit_of_employees",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 14"],
+      "description": "Employee hiring restriction"
+    },
+    {
+      "term": "non-disparagement",
+      "lemma": "non-disparagement",
+      "category": "non_disparagement",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 15"],
+      "description": "Prohibition on negative statements"
+    },
+    {
+      "term": "disparage",
+      "lemma": "disparage",
+      "category": "non_disparagement",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 15"],
+      "description": "Reference to disparagement"
+    },
+    {
+      "term": "termination for convenience",
+      "lemma": "termination for convenience",
+      "category": "termination_for_convenience",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 16"],
+      "description": "Unilateral termination without cause"
+    },
+    {
+      "term": "terminate without cause",
+      "lemma": "terminate without cause",
+      "category": "termination_for_convenience",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 16"],
+      "description": "Termination without breach requirement"
+    },
+    {
+      "term": "terminate at will",
+      "lemma": "terminate at will",
+      "category": "termination_for_convenience",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 16"],
+      "description": "At-will termination right"
+    },
+    {
+      "term": "terminate upon notice",
+      "lemma": "terminate upon notice",
+      "category": "termination_for_convenience",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 16"],
+      "description": "Notice-based termination"
+    },
+    {
+      "term": "right of first refusal",
+      "lemma": "right of first refusal",
+      "category": "rofr_rofo_rofn",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 17"],
+      "description": "ROFR clause"
+    },
+    {
+      "term": "right of first offer",
+      "lemma": "right of first offer",
+      "category": "rofr_rofo_rofn",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 17"],
+      "description": "ROFO clause"
+    },
+    {
+      "term": "right of first negotiation",
+      "lemma": "right of first negotiation",
+      "category": "rofr_rofo_rofn",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 17"],
+      "description": "ROFN clause"
+    },
+    {
+      "term": "change of control",
+      "lemma": "change of control",
+      "category": "change_of_control",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 18"],
+      "description": "Rights triggered by ownership change"
+    },
+    {
+      "term": "change in control",
+      "lemma": "change in control",
+      "category": "change_of_control",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 18"],
+      "description": "Ownership change provision"
+    },
+    {
+      "term": "merger",
+      "lemma": "merger",
+      "category": "change_of_control",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 18"],
+      "description": "Merger-related provision"
+    },
+    {
+      "term": "acquisition",
+      "lemma": "acquisition",
+      "category": "change_of_control",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 18"],
+      "description": "Acquisition-related provision"
+    },
+    {
+      "term": "assignment",
+      "lemma": "assignment",
+      "category": "anti_assignment",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 19"],
+      "description": "Contract assignment reference"
+    },
+    {
+      "term": "anti-assignment",
+      "lemma": "anti-assignment",
+      "category": "anti_assignment",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 19"],
+      "description": "Assignment restriction"
+    },
+    {
+      "term": "may not assign",
+      "lemma": "may not assign",
+      "category": "anti_assignment",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 19"],
+      "description": "Assignment prohibition"
+    },
+    {
+      "term": "shall not assign",
+      "lemma": "shall not assign",
+      "category": "anti_assignment",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 19"],
+      "description": "Assignment prohibition"
+    },
+    {
+      "term": "revenue sharing",
+      "lemma": "revenue sharing",
+      "category": "revenue_profit_sharing",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 20"],
+      "description": "Revenue sharing arrangement"
+    },
+    {
+      "term": "profit sharing",
+      "lemma": "profit sharing",
+      "category": "revenue_profit_sharing",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 20"],
+      "description": "Profit sharing arrangement"
+    },
+    {
+      "term": "royalty",
+      "lemma": "royalty",
+      "category": "revenue_profit_sharing",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 20"],
+      "description": "Royalty payment obligation"
+    },
+    {
+      "term": "price restriction",
+      "lemma": "price restriction",
+      "category": "price_restrictions",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 21"],
+      "description": "Pricing limitation"
+    },
+    {
+      "term": "price increase",
+      "lemma": "price increase",
+      "category": "price_restrictions",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 21"],
+      "description": "Price adjustment provision"
+    },
+    {
+      "term": "minimum commitment",
+      "lemma": "minimum commitment",
+      "category": "minimum_commitment",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 22"],
+      "description": "Minimum purchase requirement"
+    },
+    {
+      "term": "minimum order",
+      "lemma": "minimum order",
+      "category": "minimum_commitment",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 22"],
+      "description": "Minimum order size"
+    },
+    {
+      "term": "minimum purchase",
+      "lemma": "minimum purchase",
+      "category": "minimum_commitment",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 22"],
+      "description": "Minimum purchase obligation"
+    },
+    {
+      "term": "volume restriction",
+      "lemma": "volume restriction",
+      "category": "volume_restriction",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 23"],
+      "description": "Usage volume limitation"
+    },
+    {
+      "term": "usage limit",
+      "lemma": "usage limit",
+      "category": "volume_restriction",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 23"],
+      "description": "Usage cap"
+    },
+    {
+      "term": "ip ownership",
+      "lemma": "ip ownership",
+      "category": "ip_ownership_assignment",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 24"],
+      "description": "IP ownership provision"
+    },
+    {
+      "term": "intellectual property",
+      "lemma": "intellectual property",
+      "category": "ip_ownership_assignment",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 24"],
+      "description": "IP reference"
+    },
+    {
+      "term": "work for hire",
+      "lemma": "work for hire",
+      "category": "ip_ownership_assignment",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 24"],
+      "description": "Work for hire assignment"
+    },
+    {
+      "term": "assign all rights",
+      "lemma": "assign all rights",
+      "category": "ip_ownership_assignment",
+      "base_risk": 5,
+      "legal_refs": ["CUAD Category 24"],
+      "description": "Full IP assignment"
+    },
+    {
+      "term": "joint ownership",
+      "lemma": "joint ownership",
+      "category": "joint_ip_ownership",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 25"],
+      "description": "Shared IP ownership"
+    },
+    {
+      "term": "jointly owned",
+      "lemma": "jointly owned",
+      "category": "joint_ip_ownership",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 25"],
+      "description": "Joint ownership provision"
+    },
+    {
+      "term": "license grant",
+      "lemma": "license grant",
+      "category": "license_grant",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 26"],
+      "description": "License grant clause"
+    },
+    {
+      "term": "grants license",
+      "lemma": "grant license",
+      "category": "license_grant",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 26"],
+      "description": "License granting language"
+    },
+    {
+      "term": "hereby grants",
+      "lemma": "hereby grant",
+      "category": "license_grant",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 26"],
+      "description": "Grant language"
+    },
+    {
+      "term": "non-transferable",
+      "lemma": "non-transferable",
+      "category": "non_transferable_license",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 27"],
+      "description": "Transfer restriction"
+    },
+    {
+      "term": "non-sublicensable",
+      "lemma": "non-sublicensable",
+      "category": "non_transferable_license",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 27"],
+      "description": "Sublicense restriction"
+    },
+    {
+      "term": "unlimited license",
+      "lemma": "unlimited license",
+      "category": "unlimited_license",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 30"],
+      "description": "Unlimited usage license"
+    },
+    {
+      "term": "enterprise license",
+      "lemma": "enterprise license",
+      "category": "unlimited_license",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 30"],
+      "description": "Enterprise-wide license"
+    },
+    {
+      "term": "irrevocable license",
+      "lemma": "irrevocable license",
+      "category": "irrevocable_perpetual_license",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 31"],
+      "description": "Non-revocable license"
+    },
+    {
+      "term": "perpetual license",
+      "lemma": "perpetual license",
+      "category": "irrevocable_perpetual_license",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 31"],
+      "description": "Perpetual license grant"
+    },
+    {
+      "term": "irrevocable",
+      "lemma": "irrevocable",
+      "category": "irrevocable_perpetual_license",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 31"],
+      "description": "Irrevocable right"
+    },
+    {
+      "term": "source code escrow",
+      "lemma": "source code escrow",
+      "category": "source_code_escrow",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 32"],
+      "description": "Source code escrow arrangement"
+    },
+    {
+      "term": "escrow agent",
+      "lemma": "escrow agent",
+      "category": "source_code_escrow",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 32"],
+      "description": "Escrow arrangement"
+    },
+    {
+      "term": "post-termination",
+      "lemma": "post-termination",
+      "category": "post_termination_services",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 33"],
+      "description": "Post-termination obligation"
+    },
+    {
+      "term": "survive termination",
+      "lemma": "survive termination",
+      "category": "post_termination_services",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 33"],
+      "description": "Surviving obligation"
+    },
+    {
+      "term": "transition services",
+      "lemma": "transition service",
+      "category": "post_termination_services",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 33"],
+      "description": "Transition assistance"
+    },
+    {
+      "term": "audit",
+      "lemma": "audit",
+      "category": "audit_rights",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 34"],
+      "description": "Audit right"
+    },
+    {
+      "term": "audit rights",
+      "lemma": "audit right",
+      "category": "audit_rights",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 34"],
+      "description": "Right to audit"
+    },
+    {
+      "term": "inspect records",
+      "lemma": "inspect record",
+      "category": "audit_rights",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 34"],
+      "description": "Record inspection right"
+    },
+    {
+      "term": "uncapped liability",
+      "lemma": "uncapped liability",
+      "category": "uncapped_liability",
+      "base_risk": 5,
+      "legal_refs": ["CUAD Category 35"],
+      "description": "No liability cap"
+    },
+    {
+      "term": "unlimited liability",
+      "lemma": "unlimited liability",
+      "category": "uncapped_liability",
+      "base_risk": 5,
+      "legal_refs": ["CUAD Category 35"],
+      "description": "Unlimited liability exposure"
+    },
+    {
+      "term": "liability shall not exceed",
+      "lemma": "liability shall not exceed",
+      "category": "cap_on_liability",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 36"],
+      "description": "Liability cap language"
+    },
+    {
+      "term": "cap on liability",
+      "lemma": "cap on liability",
+      "category": "cap_on_liability",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 36"],
+      "description": "Liability limitation"
+    },
+    {
+      "term": "limitation of liability",
+      "lemma": "limitation of liability",
+      "category": "cap_on_liability",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 36"],
+      "description": "Liability cap clause"
+    },
+    {
+      "term": "aggregate liability",
+      "lemma": "aggregate liability",
+      "category": "cap_on_liability",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 36"],
+      "description": "Total liability reference"
+    },
+    {
+      "term": "liquidated damages",
+      "lemma": "liquidated damage",
+      "category": "liquidated_damages",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 37"],
+      "description": "Pre-agreed damages"
+    },
+    {
+      "term": "termination fee",
+      "lemma": "termination fee",
+      "category": "liquidated_damages",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 37"],
+      "description": "Termination penalty"
+    },
+    {
+      "term": "early termination fee",
+      "lemma": "early termination fee",
+      "category": "liquidated_damages",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 37"],
+      "description": "Early exit penalty"
+    },
+    {
+      "term": "warranty",
+      "lemma": "warranty",
+      "category": "warranty",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 38"],
+      "description": "Warranty provision"
+    },
+    {
+      "term": "warrants",
+      "lemma": "warrant",
+      "category": "warranty",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 38"],
+      "description": "Warranty statement"
+    },
+    {
+      "term": "as is",
+      "lemma": "as is",
+      "category": "warranty",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 38"],
+      "description": "Warranty disclaimer"
+    },
+    {
+      "term": "no warranty",
+      "lemma": "no warranty",
+      "category": "warranty",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 38"],
+      "description": "Warranty exclusion"
+    },
+    {
+      "term": "insurance",
+      "lemma": "insurance",
+      "category": "insurance",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 39"],
+      "description": "Insurance requirement"
+    },
+    {
+      "term": "maintain insurance",
+      "lemma": "maintain insurance",
+      "category": "insurance",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 39"],
+      "description": "Insurance obligation"
+    },
+    {
+      "term": "covenant not to sue",
+      "lemma": "covenant not to sue",
+      "category": "covenant_not_to_sue",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 40"],
+      "description": "Litigation waiver"
+    },
+    {
+      "term": "release of claims",
+      "lemma": "release of claim",
+      "category": "covenant_not_to_sue",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 40"],
+      "description": "Claims release"
+    },
+    {
+      "term": "third party beneficiary",
+      "lemma": "third party beneficiary",
+      "category": "third_party_beneficiary",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 41"],
+      "description": "Third party rights"
+    },
+    {
+      "term": "indemnify",
+      "lemma": "indemnify",
+      "category": "indemnification",
+      "base_risk": 5,
+      "legal_refs": [],
+      "description": "Indemnification obligation"
+    },
+    {
+      "term": "indemnification",
+      "lemma": "indemnification",
+      "category": "indemnification",
+      "base_risk": 5,
+      "legal_refs": [],
+      "description": "Indemnity clause"
+    },
+    {
+      "term": "hold harmless",
+      "lemma": "hold harmless",
+      "category": "indemnification",
+      "base_risk": 5,
+      "legal_refs": [],
+      "description": "Hold harmless provision"
+    },
+    {
+      "term": "defend and indemnify",
+      "lemma": "defend and indemnify",
+      "category": "indemnification",
+      "base_risk": 5,
+      "legal_refs": [],
+      "description": "Defense and indemnity obligation"
+    },
+    {
+      "term": "confidential",
+      "lemma": "confidential",
+      "category": "confidentiality",
+      "base_risk": 2,
+      "legal_refs": [],
+      "description": "Confidentiality marker"
+    },
+    {
+      "term": "confidential information",
+      "lemma": "confidential information",
+      "category": "confidentiality",
+      "base_risk": 2,
+      "legal_refs": [],
+      "description": "Confidential information definition"
+    },
+    {
+      "term": "non-disclosure",
+      "lemma": "non-disclosure",
+      "category": "confidentiality",
+      "base_risk": 2,
+      "legal_refs": [],
+      "description": "NDA provision"
+    },
+    {
+      "term": "trade secret",
+      "lemma": "trade secret",
+      "category": "confidentiality",
+      "base_risk": 3,
+      "legal_refs": [],
+      "description": "Trade secret reference"
+    },
+    {
+      "term": "governing law",
+      "lemma": "governing law",
+      "category": "governing_law",
+      "base_risk": 1,
+      "legal_refs": ["CUAD Category 8"],
+      "description": "Choice of law clause"
+    },
+    {
+      "term": "governed by",
+      "lemma": "governed by",
+      "category": "governing_law",
+      "base_risk": 1,
+      "legal_refs": ["CUAD Category 8"],
+      "description": "Governing law reference"
+    },
+    {
+      "term": "jurisdiction",
+      "lemma": "jurisdiction",
+      "category": "governing_law",
+      "base_risk": 2,
+      "legal_refs": ["CUAD Category 8"],
+      "description": "Jurisdiction clause"
+    },
+    {
+      "term": "most favored nation",
+      "lemma": "most favored nation",
+      "category": "most_favored_nation",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 9"],
+      "description": "MFN clause"
+    },
+    {
+      "term": "most favoured nation",
+      "lemma": "most favoured nation",
+      "category": "most_favored_nation",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 9"],
+      "description": "MFN clause (UK spelling)"
+    },
+    {
+      "term": "consequential damages",
+      "lemma": "consequential damage",
+      "category": "uncapped_liability",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 35"],
+      "description": "Indirect damages reference"
+    },
+    {
+      "term": "incidental damages",
+      "lemma": "incidental damage",
+      "category": "uncapped_liability",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 35"],
+      "description": "Incidental damages reference"
+    },
+    {
+      "term": "special damages",
+      "lemma": "special damage",
+      "category": "uncapped_liability",
+      "base_risk": 4,
+      "legal_refs": ["CUAD Category 35"],
+      "description": "Special damages reference"
+    },
+    {
+      "term": "liable",
+      "lemma": "liable",
+      "category": "uncapped_liability",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 35"],
+      "description": "Liability reference"
+    },
+    {
+      "term": "liability",
+      "lemma": "liability",
+      "category": "uncapped_liability",
+      "base_risk": 3,
+      "legal_refs": ["CUAD Category 35"],
+      "description": "Liability reference"
+    }
+  ],
+  "negation_cues": [
+    "not", "no", "neither", "nor", "never", "without",
+    "exclude", "except", "unless", "waive", "disclaim",
+    "shall not", "will not", "cannot", "may not"
+  ],
+  "intensifiers": [
+    "unlimited", "sole", "exclusive", "irrevocable", "perpetual",
+    "unconditional", "absolute", "total", "full", "maximum",
+    "any and all", "all", "entire", "gross negligence", "willful"
+  ]
+}

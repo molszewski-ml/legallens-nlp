@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalLens Report — {{ document.filename }}</title>
+    <style>
+        /* ── Base ── */
+        :root {
+            --bg:        #0f1117;
+            --surface:   #1a1d27;
+            --border:    #2a2d3a;
+            --text:      #e1e4ed;
+            --text-dim:  #8b8fa3;
+            --accent:    #6c8cff;
+            --red:       #ff5c5c;
+            --yellow:    #f0c24a;
+            --green:     #4ade80;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ── Section spacing ── */
+        section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ── Section 1: Header ── */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .header-meta {
+            text-align: right;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        .doc-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .doc-info-item {
+            background: var(--bg);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+        }
+
+        .doc-info-label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .doc-info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 0.2rem;
+        }
+
+        /* ── Section 2: Risk Overview ── */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .overview-card {
+            background: var(--bg);
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+            text-align: center;
+        }
+
+        .overview-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .overview-card .label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 0.25rem;
+        }
+
+        .risk-bar-container {
+            background: var(--bg);
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+        }
+
+        .risk-bar-label {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .risk-bar-track {
+            width: 100%;
+            height: 12px;
+            background: var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .risk-bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.3s;
+        }
+
+        .risk-bar-value {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-top: 0.35rem;
+            text-align: right;
+        }
+
+        /* ── Section 3: Risk by Category ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ── Risk colors ── */
+        .risk-high   { color: var(--red); }
+        .risk-medium { color: var(--yellow); }
+        .risk-low    { color: var(--green); }
+
+        .risk-badge {
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .risk-badge-high   { background: rgba(255, 92, 92, 0.15); color: var(--red); }
+        .risk-badge-medium { background: rgba(240, 194, 74, 0.15); color: var(--yellow); }
+        .risk-badge-low    { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+
+        /* ── Section 4: Lexicon Matches ── */
+        .match-card {
+            background: var(--bg);
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid var(--border);
+        }
+
+        .match-card-high   { border-left-color: var(--red); }
+        .match-card-medium { border-left-color: var(--yellow); }
+        .match-card-low    { border-left-color: var(--green); }
+
+        .match-quote {
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+            padding-left: 0.75rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .match-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .match-meta strong {
+            color: var(--text);
+        }
+
+        .match-refs {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 0.5rem;
+        }
+
+        .match-modifiers {
+            font-size: 0.8rem;
+            margin-top: 0.35rem;
+        }
+
+        /* ── Section 5: LLM Analyses ── */
+        .llm-card {
+            background: var(--bg);
+            border-radius: 6px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .llm-clause {
+            font-style: italic;
+            color: var(--text-dim);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .llm-assessment {
+            color: var(--text);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .llm-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            padding: 1rem;
+        }
+
+        /* ── Empty state ── */
+        .empty {
+            color: var(--text-dim);
+            font-style: italic;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ═══ SECTION 1: HEADER ═══ -->
+    <section class="header">
+        <div>
+            <div class="logo">Legal<span>Lens</span></div>
+            <div style="color: var(--text-dim); font-size: 0.85rem; margin-top: 0.25rem;">
+                Legal Document Risk Analyzer
+            </div>
+        </div>
+        <div class="header-meta">
+            <div>Generated: {{ generated_at }}</div>
+            <div>Processing time: {{ processing_time }}s</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Document Information</h2>
+        <div class="doc-info">
+            <div class="doc-info-item">
+                <div class="doc-info-label">Filename</div>
+                <div class="doc-info-value">{{ document.filename }}</div>
+            </div>
+            <div class="doc-info-item">
+                <div class="doc-info-label">Format</div>
+                <div class="doc-info-value">{{ document.format | upper }}</div>
+            </div>
+            <div class="doc-info-item">
+                <div class="doc-info-label">Pages</div>
+                <div class="doc-info-value">{{ document.pages }}</div>
+            </div>
+            <div class="doc-info-item">
+                <div class="doc-info-label">Words</div>
+                <div class="doc-info-value">{{ "{:,}".format(document.words) }}</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SECTION 2: RISK OVERVIEW ═══ -->
+    <section>
+        <h2>Risk Overview</h2>
+        <div class="overview-grid">
+            <div class="overview-card">
+                <div class="number">{{ clauses_total }}</div>
+                <div class="label">Total Clauses</div>
+            </div>
+            <div class="overview-card">
+                <div class="number risk-high">{{ clauses_flagged }}</div>
+                <div class="label">Flagged Clauses</div>
+            </div>
+            <div class="overview-card">
+                <div class="number" style="color: var(--accent);">{{ categories_count }}</div>
+                <div class="label">Risk Categories</div>
+            </div>
+        </div>
+
+        <div class="risk-bar-container">
+            <div class="risk-bar-label">Flagged / Total Clauses</div>
+            <div class="risk-bar-track">
+                <div class="risk-bar-fill" style="
+                    width: {{ risk_percent }}%;
+                    background: {% if risk_percent > 50 %}var(--red){% elif risk_percent > 25 %}var(--yellow){% else %}var(--green){% endif %};
+                "></div>
+            </div>
+            <div class="risk-bar-value">{{ risk_percent }}%</div>
+        </div>
+    </section>
+
+    <!-- ═══ SECTION 3: RISK BY CATEGORY ═══ -->
+    <section>
+        <h2>Risk by Category</h2>
+        {% if risk_summary %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Matches</th>
+                    <th>Highest Risk</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cat in risk_summary %}
+                <tr>
+                    <td>{{ cat.category }}</td>
+                    <td>{{ cat.count }}</td>
+                    <td>
+                        <span class="risk-badge {% if cat.max_risk >= 4 %}risk-badge-high{% elif cat.max_risk >= 3 %}risk-badge-medium{% else %}risk-badge-low{% endif %}">
+                            {{ cat.max_risk }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="empty">No risk categories detected.</p>
+        {% endif %}
+    </section>
+
+    <!-- ═══ SECTION 4: LEXICON MATCHES ═══ -->
+    <section>
+        <h2>Lexicon Matches ({{ lexicon_matches | length }})</h2>
+        {% if lexicon_matches %}
+            {% for m in lexicon_matches %}
+            <div class="match-card {% if m.adjusted_risk >= 4 %}match-card-high{% elif m.adjusted_risk >= 3 %}match-card-medium{% else %}match-card-low{% endif %}">
+                <div class="match-quote">"{{ m.sentence_text }}"</div>
+                <div class="match-meta">
+                    <span>Term: <strong>{{ m.matched_term }}</strong></span>
+                    <span>Category: <strong>{{ m.category }}</strong></span>
+                    <span>Base risk: <strong>{{ m.base_risk }}</strong></span>
+                    <span>Adjusted risk:
+                        <strong class="{% if m.adjusted_risk >= 4 %}risk-high{% elif m.adjusted_risk >= 3 %}risk-medium{% else %}risk-low{% endif %}">
+                            {{ m.adjusted_risk }}
+                        </strong>
+                    </span>
+                </div>
+                {% if m.negated or m.intensified %}
+                <div class="match-modifiers">
+                    {% if m.negated %}<span class="risk-low">NEGATED</span>{% endif %}
+                    {% if m.intensified %}<span class="risk-high">INTENSIFIED</span>{% endif %}
+                </div>
+                {% endif %}
+                {% if m.legal_refs %}
+                <div class="match-refs">Legal refs: {{ m.legal_refs | join(", ") }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+        <p class="empty">No lexicon matches found.</p>
+        {% endif %}
+    </section>
+
+    <!-- ═══ SECTION 5: LLM ANALYSES ═══ -->
+    <section>
+        <h2>LLM Contextual Analysis ({{ llm_analyses | length }})</h2>
+        {% if llm_analyses %}
+            {% for a in llm_analyses %}
+            <div class="llm-card">
+                <div class="llm-clause">"{{ a.clause_text }}"</div>
+                <div class="llm-assessment">{{ a.assessment }}</div>
+                <div class="llm-meta">
+                    <span>Category: <strong>{{ a.category }}</strong></span>
+                    <span>Lexicon risk: <strong>{{ a.lexicon_risk }}</strong></span>
+                    <span>LLM risk: <strong>{{ a.llm_risk }}</strong></span>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p class="empty">No clauses exceeded the risk threshold for LLM analysis.</p>
+        {% endif %}
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <div class="footer">
+        LegalLens v1.0 — Lexicon-based + LLM-powered legal document risk analysis
+    </div>
+
+</div>
+</body>
+</html>
